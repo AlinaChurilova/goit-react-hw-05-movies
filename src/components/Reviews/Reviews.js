@@ -10,7 +10,7 @@ const Reviews = () => {
 
     useEffect(() => {
         ApiReviews(movieId).then(data => setReviews(data.results)) 
-    }, [])
+    }, [movieId])
 
     //  const poster = cast?.profile_path && `https://image.tmdb.org/t/p/w500/${cast?.profile_path}`;
     return (

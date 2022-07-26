@@ -11,7 +11,7 @@ export default function MovieDetails() {
 
     useEffect(() => {
         ApiDetails(movieId).then(data => setFilm(data)) 
-    }, [])
+    }, [movieId])
     
   
 

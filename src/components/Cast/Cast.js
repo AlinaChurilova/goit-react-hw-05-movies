@@ -10,7 +10,7 @@ const Cast = () => {
 
     useEffect(() => {
         ApiCast(movieId).then(data => setCast(data.cast)) 
-    }, [])
+    }, [movieId])
 
     //  const poster = cast?.profile_path && `https://image.tmdb.org/t/p/w500/${cast?.profile_path}`;
     return (
