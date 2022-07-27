@@ -9,14 +9,14 @@ import './index.css';
 
 const App = () => (
   <>
-    <ul className='ListApp'>
+    <header className='ListApp'>
       <li className='ListItemApp'>
-        <NavLink to="/">Home</NavLink>
+        <NavLink className={({ isActive }) => isActive? 'activeNavLink':'NavLink'} to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/movies">Movies</NavLink>
+        <NavLink className={({ isActive }) => isActive? 'activeNavLink':'NavLink'} to="/movies">Movies</NavLink>
       </li>
-    </ul>
+    </header>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/movies/:movieId" element={<MovieDetails />}>

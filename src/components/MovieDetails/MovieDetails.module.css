@@ -1,3 +1,19 @@
 .Location {
     display: flex;
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: 0.03em;
+    
+}
+
+.GoBack {
+    display: inline-block;
+    text-align: center;
+    padding: 1px;
+    margin: 10px 0 10px 0;
+    border: 1px solid blueviolet;
+    text-decoration: none;
+    background-color: thistle;
+    color: blueviolet;
+    
 }

@@ -1,5 +1,4 @@
-// import PropTypes from 'prop-types';
-// const BASE_URL= 'https://api.themoviedb.org/3/trending/movie/day';
+
 const KEY = '42bcf6d6624bc25b6cac8209269cf32f';
 
 export function Api() {
@@ -21,6 +20,11 @@ export function ApiCast(movieID) {
 
 export function ApiReviews(movieID) {
   return fetch(`https://api.themoviedb.org/3/movie/${movieID}/reviews?api_key=${KEY}&language=en-US&page=1`)
+    .then(response => response.json());
+}
+
+export function ApiSearch(searchQuery) {
+  return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${searchQuery}&language=en-US&page=1&include_adult=false`)
     .then(response => response.json());
 }
 

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { ApiReviews } from 'services/Api';
+import s from './Reviews.module.css'
 
 
 const Reviews = () => {
@@ -11,23 +12,17 @@ const Reviews = () => {
     useEffect(() => {
         ApiReviews(movieId).then(data => setReviews(data.results)) 
     }, [movieId])
-
-    //  const poster = cast?.profile_path && `https://image.tmdb.org/t/p/w500/${cast?.profile_path}`;
     return (
         <>
-            
-            <div>
-             {reviews.map(({id, author, content}) => (
-                <div key={id}>
-                     <p>Author: {author}</p>
-                     <p>{content}</p>
-                </div>
-                        
-                    ))}
-            </div>  
-         
+        <div>
+            {reviews.length ? reviews.map(({id, author, content}) => (
+            <div key={id}>
+                    <p className={s.Title}>Author: {author}</p>
+                    <p className={s.Content} >{content}</p>
+            </div>)) : <p className={s.Title} >We don`t have any reviews for this movie</p>      
+        }
+        </div>  
         </>
-        
     );
 }
 

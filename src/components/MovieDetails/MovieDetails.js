@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, Outlet } from "react-router-dom";
-// import { Link } from 'react-router-dom';
+import { useLocation, useParams, Link, Outlet } from "react-router-dom";
+import { ImUndo2 } from "react-icons/im";
 import { ApiDetails } from 'services/Api';
 import s from './MovieDetails.module.css'
-// import { Outlet }  from 'react-router-dom';
 
 export default function MovieDetails() {
     const { movieId } = useParams();
@@ -13,31 +12,33 @@ export default function MovieDetails() {
         ApiDetails(movieId).then(data => setFilm(data)) 
     }, [movieId])
     
-  
-
-
-    // const [movies, setMovies] = useState([]);
-
-    // useEffect(() => {
-    //    Api().then(movies => setMovies(movies.results)) 
-    // }, [])
     const poster = film?.poster_path && `https://image.tmdb.org/t/p/w500/${film?.poster_path}`;
+    const location = useLocation();
+    const backLinkHref = location.state?.from ?? "/";
 
     return (
         <>
         {film && (  
-        <div>
+            <div>
+             <Link className={s.GoBack} to={backLinkHref}>
+                <span>
+                <ImUndo2 style={{marginRight: 8}} />
+                </span>
+                    Go back
+            </Link>  
             <div className={s.Location}>
                 <img src={poster} alt="" width={300} />
-                    <div>
-                        <h2>{film.title}</h2>
-                        <p>Overview {film.overview}</p>
-                        <span>User Score: { Math.round(film.vote_average*10)} %</span>        
-                        <ul> Genres {film?.genres?.map(({id, name}) => (
-                            <li key={id}>{name}</li>
-                            ))} 
-                        </ul>
-                    </div>     
+                <div>
+                    <h2>{film.title}</h2>
+                    <h3>Overview</h3>
+                    <p>{film.overview}</p>
+                    <span>User Score: {Math.round(film.vote_average * 10)} %</span> 
+                    <h3>Genres</h3>    
+                    <ul>{film?.genres?.map(({id, name}) => (
+                        <li key={id}>{name}</li>
+                        ))} 
+                    </ul>
+                </div>     
             </div>
             
             <ul>Additional information
@@ -50,30 +51,8 @@ export default function MovieDetails() {
             </ul>
                  <Outlet />   
         </div>
-    )}
-            
+    )}      
     </>
     );
 
 }
-
-//   <div>
-//             <img src={poster} alt="" width={100} />
-                    
-//             <h2>{film.title}</h2>
-//             <p>Overview {film.overview}</p>
-//             <span>User Score: { Math.round(film.vote_average*10)} %</span>        
-//             <ul> Genres {film?.genres?.map(({id, name}) => (
-//                     <li key={id}>{name}</li>
-//                ))} 
-//             </ul>
-//             <ul>Additional information
-//                     <li>
-//                         <Link to="cast">Cast</Link>
-//                     </li>
-//                     <li>
-//                         <Link to="reviews">Reviews</Link>
-//                     </li>    
-//             </ul>
-//                  <Outlet />   
-//         </div>
