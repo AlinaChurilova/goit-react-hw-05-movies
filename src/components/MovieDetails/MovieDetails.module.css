@@ -15,5 +15,12 @@
     text-decoration: none;
     background-color: thistle;
     color: blueviolet;
-    
+}
+
+.List {
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: 0.03em;
+    font-size: 16px;
+    list-style: square;
 }

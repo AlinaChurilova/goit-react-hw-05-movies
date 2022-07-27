@@ -8,6 +8,7 @@ export default function MovieDetails() {
     const { movieId } = useParams();
     const [film, setFilm] = useState([]);
 
+
     useEffect(() => {
         ApiDetails(movieId).then(data => setFilm(data)) 
     }, [movieId])
@@ -15,6 +16,7 @@ export default function MovieDetails() {
     const poster = film?.poster_path && `https://image.tmdb.org/t/p/w500/${film?.poster_path}`;
     const location = useLocation();
     const backLinkHref = location.state?.from ?? "/";
+    const query = location?.state?.from?.search;
 
     return (
         <>
@@ -41,13 +43,13 @@ export default function MovieDetails() {
                 </div>     
             </div>
             
-            <ul>Additional information
-                    <li>
-                        <Link to="cast">Cast</Link>
-                    </li>
-                    <li>
-                        <Link to="reviews">Reviews</Link>
-                    </li>    
+            <ul className={s.List}>Additional information
+                <li>
+                        <Link to="cast" state={{ from: `/movies${query}` }}>Cast</Link>
+                </li>
+                <li>
+                        <Link to="reviews" state={{ from: `/movies${query}` }}>Reviews</Link>
+                </li>    
             </ul>
                  <Outlet />   
         </div>

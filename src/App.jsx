@@ -1,22 +1,24 @@
 import React from 'react';
-import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from 'components/Home';
 import Movies from 'components/Movies';
 import MovieDetails from 'components/MovieDetails';
 import Cast from 'components/Cast';
 import Reviews from 'components/Reviews';
+import Navigation from 'components/Navigation';
 import './index.css';
 
 const App = () => (
   <>
-    <header className='ListApp'>
+    <Navigation/>
+    {/* <header className='ListApp'>
       <li className='ListItemApp'>
         <NavLink className={({ isActive }) => isActive? 'activeNavLink':'NavLink'} to="/">Home</NavLink>
       </li>
       <li>
         <NavLink className={({ isActive }) => isActive? 'activeNavLink':'NavLink'} to="/movies">Movies</NavLink>
       </li>
-    </header>
+    </header> */}
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/movies/:movieId" element={<MovieDetails />}>

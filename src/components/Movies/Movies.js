@@ -13,17 +13,18 @@ const Movies = () => {
   useEffect(() => {
     if (query === '') {
         return
-      }
+    }
         ApiSearch(query).then(data => setMovies(data.results)); 
-    }, [])
+    }, [query])
 
     const handleSubmit = event => {
-        event.preventDefault();
-        if (query.trim() === '') {
+      event.preventDefault();
+      const queryString = event.target.elements.query.value;
+        if (queryString.trim() === '') {
             return;
         }
-      ApiSearch(query).then(data => setMovies(data.results)); 
       const form = event.currentTarget;
+      setSearchParams({ query: queryString });
       form.reset();
     } 
     
@@ -36,7 +37,6 @@ const Movies = () => {
             className={s.SearchFormInput}
             type="text"
             name="query"
-            onChange={e => setSearchParams({ query: e.target.value })}
             placeholder="Search movies"
               />
             <button type="submit" className={s.SearchButton}>
