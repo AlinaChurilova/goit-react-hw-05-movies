@@ -4,7 +4,7 @@ import { ImUndo2 } from "react-icons/im";
 import { ApiDetails } from 'services/Api';
 import s from './MovieDetails.module.css'
 
-export default function MovieDetails() {
+const MovieDetails = () => {
     const { movieId } = useParams();
     const [film, setFilm] = useState([]);
 
@@ -58,3 +58,5 @@ export default function MovieDetails() {
     );
 
 }
+
+export default MovieDetails;

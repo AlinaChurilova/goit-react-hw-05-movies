@@ -1,25 +1,20 @@
-import React from 'react';
+import React, { lazy, Suspense }from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Home from 'components/Home';
-import Movies from 'components/Movies';
-import MovieDetails from 'components/MovieDetails';
-import Cast from 'components/Cast';
-import Reviews from 'components/Reviews';
 import Navigation from 'components/Navigation';
 import './index.css';
+
+const Home = lazy(() => import("components/Home"));
+const Movies = lazy(() => import("components/Movies"));
+const MovieDetails = lazy(() => import("components/MovieDetails"));
+const Cast = lazy(() => import("components/Cast"));
+const Reviews = lazy(() => import("components/Reviews"));
+
 
 const App = () => (
   <>
     <Navigation/>
-    {/* <header className='ListApp'>
-      <li className='ListItemApp'>
-        <NavLink className={({ isActive }) => isActive? 'activeNavLink':'NavLink'} to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink className={({ isActive }) => isActive? 'activeNavLink':'NavLink'} to="/movies">Movies</NavLink>
-      </li>
-    </header> */}
-    <Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/movies/:movieId" element={<MovieDetails />}>
         <Route path="cast" element={<Cast />} />
@@ -31,6 +26,7 @@ const App = () => (
         element={<Navigate to="/" replace />}
     />
     </Routes>
+   </Suspense>
   </>
 );
 
